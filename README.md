@@ -20,6 +20,16 @@ On [Docker Hub](https://hub.docker.com/r/illegalentity/dff-tc-agent/)
 
 ## Todo in a new container
 
+### Modify TeamCity Config
+
+Add the following lines to ```/data/teamcity_agent/conf/buildAgent.properties```
+
+```shell
+teamcity.git.use.native.ssh=true
+env.CORDOVA_VERSION=X
+env.ANDROID_HOME=/opt/android-sdk
+```
+
 ### Authenticate DFF NPM Registry
 
 ```npm adduser --registry https://npm.dff-solutions.de```

@@ -22,7 +22,11 @@ RUN apt-get update && \
     echo Y | /opt/android-sdk/tools/bin/sdkmanager --install tools; \
     echo Y | /opt/android-sdk/tools/bin/sdkmanager --install platform-tools; \
     echo Y | /opt/android-sdk/tools/bin/sdkmanager --install "build-tools;25.0.3"; \
+    ln -s /opt/android-sdk/tools/bin/sdkmanager /usr/bin/sdkmanager; \
     sh -c 'echo PATH=\"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/opt/android-sdk/tools:/opt/android-sdk/platform-tools\" > /etc/environment; echo ANDROID_HOME=\"/opt/android-sdk\" >> /etc/environment; echo CHROME_BIN=\"/usr/bin/google-chrome\" >> /etc/environment'; \
+    sh -c 'echo export PATH=\"$PATH:/opt/android-sdk/tools:/opt/android-sdk/platform-tools\" >> /root/.bashrc'; \
+    sh -c 'echo export ANDROID_HOME=\"/opt/android-sdk\" >> /root/.bashrc'; \
+    sh -c 'echo export CHROME_BIN=\"/usr/bin/google-chrome\" >> /root/.bashrc'; \
     git config --global credential.helper store; \
     curl -s "https://get.sdkman.io" | bash; \
     bash -c 'source "$HOME/.sdkman/bin/sdkman-init.sh"; sdk install gradle'; \
